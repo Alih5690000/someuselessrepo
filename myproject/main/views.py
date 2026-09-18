@@ -1,5 +1,5 @@
 from django.http import HttpResponse, JsonResponse, response
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 
 def hello(request,id):
     response=HttpResponse(f"lmfao {id}")
@@ -48,3 +48,12 @@ def get_cookie(request):
         return HttpResponse(f"Cookie value: {cookie_value}")
     else:
         return HttpResponse("Cookie not found")
+
+def tasks(request):
+    return render(request, "main/tasks.html", {
+        "tasks": [
+            "купить продукты",
+            "изучить шаблоны Django",
+            "сделать домашнее задание",
+        ],
+    })

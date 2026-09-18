@@ -11,6 +11,7 @@ urlpatterns = [
     path("par/<str:name>/<int:age>",views.parameters),
     path("blog/", include("blog.urls")),
     path("contact-us/",views.contact_us),
+    path("tasks/", views.tasks),
     path("",views.idk),
     path("<path:unmatched_route>/", views.not_found),
 ]
