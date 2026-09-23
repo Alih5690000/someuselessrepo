@@ -1,0 +1,25 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Django project{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <nav>
+            <a href="{% url 'home' %}">Главная</a>
+            <a href="{% url 'tasks' %}">Задачи</a>
+            <a href="{% url 'contact' %}">Контакты</a>
+        </nav>
+    </header>
+
+    <main class="page-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">Учебный проект на Django</footer>
+</body>
+</html>

@@ -1,5 +1,22 @@
 from django.http import HttpResponse, JsonResponse, response
 from django.shortcuts import redirect, render
+from django.views.generic import TemplateView
+
+
+class HomeView(TemplateView):
+    template_name = "main/home.html"
+    extra_context = {
+        "title": "Главная страница",
+        "intro": "Статические файлы и базовые шаблоны в Django",
+    }
+
+
+class ContactView(TemplateView):
+    template_name = "main/contact.html"
+    extra_context = {
+        "title": "Контакты",
+        "email": "student@example.com",
+    }
 
 def hello(request,id):
     response=HttpResponse(f"lmfao {id}")

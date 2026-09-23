@@ -1,0 +1,15 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <section class="hero">
+        <div>
+            <p class="eyebrow">Django basics</p>
+            <h1>{{ title }}</h1>
+            <p>{{ intro }}</p>
+        </div>
+        <img src="{% static 'main/images/django.svg' %}" alt="Логотип Django">
+    </section>
+{% endblock %}
