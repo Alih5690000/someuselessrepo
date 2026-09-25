@@ -66,6 +66,31 @@ def get_cookie(request):
     else:
         return HttpResponse("Cookie not found")
 
+
+def form_example(request):
+    if request.method == "POST":
+        name = (request.POST.get("name") or "").strip()
+        email = (request.POST.get("email") or "").strip()
+        message = (request.POST.get("message") or "").strip()
+
+        if not name or not email:
+            return render(request, "main/form.html", {
+                "error": "Заполните имя и email.",
+                "name": name,
+                "email": email,
+                "message": message,
+            })
+
+        return render(request, "main/form.html", {
+            "success": True,
+            "name": name,
+            "email": email,
+            "message": message,
+        })
+
+    return render(request, "main/form.html")
+
+
 def tasks(request):
     return render(request, "main/tasks.html", {
         "tasks": [

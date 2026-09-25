@@ -12,6 +12,7 @@ urlpatterns = [
     path("blog/", include("blog.urls")),
     path("contact-us/", views.ContactView.as_view(), name="contact"),
     path("tasks/", views.tasks, name="tasks"),
+    path("form/", views.form_example, name="form_example"),
     path("", views.HomeView.as_view(), name="home"),
     path("<path:unmatched_route>/", views.not_found),
 ]
