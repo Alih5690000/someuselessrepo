@@ -2,6 +2,8 @@ from django.http import HttpResponse, JsonResponse, response
 from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 
+from .forms import UserRegistrationForm
+
 
 class HomeView(TemplateView):
     template_name = "main/home.html"
@@ -69,26 +71,17 @@ def get_cookie(request):
 
 def form_example(request):
     if request.method == "POST":
-        name = (request.POST.get("name") or "").strip()
-        email = (request.POST.get("email") or "").strip()
-        message = (request.POST.get("message") or "").strip()
-
-        if not name or not email:
+        form = UserRegistrationForm(request.POST, request.FILES)
+        if form.is_valid():
             return render(request, "main/form.html", {
-                "error": "Заполните имя и email.",
-                "name": name,
-                "email": email,
-                "message": message,
+                "success": True,
+                "submitted_data": form.cleaned_data,
+                "form": form,
             })
+    else:
+        form = UserRegistrationForm()
 
-        return render(request, "main/form.html", {
-            "success": True,
-            "name": name,
-            "email": email,
-            "message": message,
-        })
-
-    return render(request, "main/form.html")
+    return render(request, "main/form.html", {"form": form})
 
 
 def tasks(request):
