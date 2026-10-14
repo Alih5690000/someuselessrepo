@@ -11,7 +11,7 @@
             <div class="success-box">
                 <p>Спасибо, {{ submitted_data.name }}!</p>
                 <p>Регистрация прошла успешно.</p>
-                <p>Email: {{ submitted_data.email }}</p>
+                <p>Email: {{ submitted_data.email|default:"не указан" }}</p>
                 <p>Дата рождения: {{ submitted_data.birth_date }}</p>
                 {% if submitted_data.resume %}
                     <p>Файл: {{ submitted_data.resume.name }}</p>
